@@ -22,7 +22,7 @@ class MarvelService {
         BuildConfig.PUBLIC_API_KEY,
         getHashApiKey())
 
-    fun getHashApiKey(): String {
+    private fun getHashApiKey(): String {
         val timeStamp = Timestamp(System.currentTimeMillis()).time.toString()
         val input = timeStamp + BuildConfig.PRIVATE_API_KEY + BuildConfig.PUBLIC_API_KEY
         val messageDigest = MessageDigest.getInstance(MESSAGE_DIGEST_ALGORITHM)
@@ -31,7 +31,7 @@ class MarvelService {
             .padStart(MESSAGE_DIGEST_PAD_START, MESSAGE_DIGEST_PAD_CHAR)
     }
 
-    fun getTimeStamp(): String {
+    private fun getTimeStamp(): String {
         return Timestamp(System.currentTimeMillis()).time.toString()
     }
 

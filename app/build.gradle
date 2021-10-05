@@ -22,7 +22,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-            buildConfigField "String", "GATEWAY_BASE_URL", "\"https://gateway.marvel.com/v1/public/\""
+            buildConfigField "String", "GATEWAY_BASE_URL", "\"https://gateway.marvel.com/\""
             buildConfigField "String", "PUBLIC_API_KEY", "\"7b10a2541d178bd31ddafd00c089aeec\""
             buildConfigField "String", "PRIVATE_API_KEY", "\"1ad39cd5db69085785d857d4c49f4ad6c8de1928\""
         }

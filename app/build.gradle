@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
 }
 
 android {
@@ -45,6 +46,7 @@ dependencies {
     implementation 'org.koin:koin-androidx-viewmodel:2.0.1'
     implementation 'org.koin:koin-androidx-scope:2.0.1'
 
+    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
     implementation "com.squareup.retrofit2:retrofit:2.8.0"

@@ -65,14 +65,9 @@ enum class ItemType(val value: String) {
 
 data class Thumbnail(
     val path: String,
-    val extension: Extension
+    val extension: String
 )
 
-enum class Extension(val value: String) {
-    GIF("gif"),
-    Jpg("jpg");
-
-}
 
 data class URL(
     val type: URLType,

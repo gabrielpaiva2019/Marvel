@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import com.paiva.marvel.R
+import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HeroesActivity : AppCompatActivity() {
@@ -31,8 +33,12 @@ class HeroesActivity : AppCompatActivity() {
             }
         })
 
-        viewModel.heroes.observe(this@HeroesActivity, Observer {
-            Toast.makeText(this@HeroesActivity, it.data.count.toString(), Toast.LENGTH_LONG).show()
+        viewModel.heroes.observe(this@HeroesActivity, Observer { heroes ->
+            var gridLayoutManager = GridLayoutManager(this, 3)
+            val adapter = HeroesAdapter(heroes.data.results)
+            recyclerListHeroes.layoutManager = gridLayoutManager
+            recyclerListHeroes.adapter = adapter
+
         })
     }
 }

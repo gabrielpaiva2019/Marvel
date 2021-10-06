@@ -37,6 +37,7 @@ class HeroesActivity : AppCompatActivity() {
             var gridLayoutManager = GridLayoutManager(this, 3)
             val adapter = HeroesAdapter(heroes.data.results)
             recyclerListHeroes.layoutManager = gridLayoutManager
+            recyclerListHeroes.addItemDecoration(HeroesRecyclerViewDecoration(3, 50, true))
             recyclerListHeroes.adapter = adapter
 
         })

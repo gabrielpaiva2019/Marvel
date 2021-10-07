@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/drawable/selected_dot.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/drawable/tab_selector.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3432302098172467" />
+        <entry key="app/src/main/res/layout/fragment_error.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_loading.xml" value="0.165" />
         <entry key="app/src/main/res/layout/heroes_item.xml" value="0.375" />
         <entry key="app/src/main/res/layout/heroes_viewpager_item.xml" value="0.17413793103448275" />

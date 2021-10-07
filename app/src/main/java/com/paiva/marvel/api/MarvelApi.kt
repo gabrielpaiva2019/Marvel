@@ -10,6 +10,7 @@ interface MarvelApi {
     suspend fun getHeroes(
         @Query("ts") ts: String,
         @Query("apikey") apikey: String,
-        @Query("hash") hash: String
+        @Query("hash") hash: String,
+        @Query("limit") limit: String = "100"
     ): Response<Heroes>
 }

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.tabs.TabLayoutMediator
 import com.paiva.marvel.R
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -39,6 +40,13 @@ class HeroesActivity : AppCompatActivity() {
             recyclerListHeroes.layoutManager = gridLayoutManager
             recyclerListHeroes.addItemDecoration(HeroesRecyclerViewDecoration(3, 50, true))
             recyclerListHeroes.adapter = adapter
+
+            val viewPagerAdapter = HeroesViewPagerAdapter(heroes.data.results)
+            viewPagerFiveFirstHeroes.adapter = viewPagerAdapter
+
+            TabLayoutMediator(viewPagerTabs, viewPagerFiveFirstHeroes) { tab, position ->
+
+            }.attach()
 
         })
     }

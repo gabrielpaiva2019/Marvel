@@ -10,12 +10,15 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.paiva.marvel.R
 import com.paiva.marvel.model.Heroes
+import com.paiva.marvel.screens.loading.LoadingDialogFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.lang.Math.abs
 
 class HeroesActivity : AppCompatActivity() {
+
     private val viewModel by viewModel<HeroesViewModel>()
+    private lateinit var loadingDialogFragment: LoadingDialogFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,13 +28,20 @@ class HeroesActivity : AppCompatActivity() {
     }
 
     private fun configScreen() {
+        initializeVars()
         setupObservers()
         viewModel.fetchHeroes()
+    }
+
+    private fun initializeVars() {
+        loadingDialogFragment = LoadingDialogFragment()
+        loadingDialogFragment.show(supportFragmentManager, "LOADING")
     }
 
     private fun setupObservers() {
         viewModel.error.observe(this, Observer {
             if(it == true){
+                loadingDialogFragment.dismiss()
                 Toast.makeText(this@HeroesActivity, "ERRO", Toast.LENGTH_LONG).show()
             }else {
 
@@ -39,6 +49,7 @@ class HeroesActivity : AppCompatActivity() {
         })
 
         viewModel.heroes.observe(this@HeroesActivity, { heroes ->
+            loadingDialogFragment.dismiss()
             configRecyclerView(heroes)
             configViewPager(heroes)
 

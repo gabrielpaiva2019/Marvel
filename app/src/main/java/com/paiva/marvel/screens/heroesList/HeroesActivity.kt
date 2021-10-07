@@ -2,15 +2,15 @@ package com.paiva.marvel.screens.heroesList
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.paiva.marvel.R
 import com.paiva.marvel.model.Heroes
+import com.paiva.marvel.model.Result
 import com.paiva.marvel.screens.error.ErrorDialogFragment
+import com.paiva.marvel.screens.heroDetails.HeroDetailsBottomSheet
 import com.paiva.marvel.screens.loading.LoadingDialogFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -38,7 +38,7 @@ class HeroesActivity : AppCompatActivity() {
     private fun initializeVars() {
       val errorDialogBuilder = ErrorDialogFragment
             .Builder()
-            .addButtonClick { callMarvelApi() }
+            .onRetryAgainClick { callMarvelApi() }
 
         errorDialogFragment = ErrorDialogFragment(errorDialogBuilder)
         loadingDialogFragment = LoadingDialogFragment()
@@ -71,10 +71,17 @@ class HeroesActivity : AppCompatActivity() {
 
     private fun configRecyclerView(heroes: Heroes) {
         var gridLayoutManager = GridLayoutManager(this, GRID_SPAN_COUNT)
-        val adapter = HeroesAdapter(heroes.data.results)
+        val adapter = HeroesAdapter(heroes.data.results) { hero ->
+            hero?.let { showHeroDetails(it) }
+        }
         recyclerListHeroes.layoutManager = gridLayoutManager
         recyclerListHeroes.addItemDecoration(HeroesRecyclerViewDecoration(GRID_SPAN_COUNT, GRID_SPACING, true))
         recyclerListHeroes.adapter = adapter
+    }
+
+    private fun showHeroDetails(hero: Result) {
+        HeroDetailsBottomSheet(hero)
+            .show(supportFragmentManager, "")
     }
 
     private fun configViewPager(heroes: Heroes) {

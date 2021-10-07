@@ -5,13 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.paiva.marvel.R
 import com.paiva.marvel.model.Result
 import com.squareup.picasso.Picasso
 
-class HeroesAdapter(var heroesList: List<Result>): RecyclerView.Adapter<HeroesAdapter.HeroesViewHolder>() {
+class HeroesAdapter(var heroesList: List<Result>, var onHeroClick: (Result?) -> Unit)
+    : RecyclerView.Adapter<HeroesAdapter.HeroesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeroesViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.heroes_item, parent, false)
@@ -28,6 +28,8 @@ class HeroesAdapter(var heroesList: List<Result>): RecyclerView.Adapter<HeroesAd
             .into(holder.imageHero)
 
         holder.textViewHeroName.text = hero.name
+
+        holder.itemView.setOnClickListener { onHeroClick(hero) }
     }
 
     override fun getItemCount(): Int {

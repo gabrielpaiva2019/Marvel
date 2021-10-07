@@ -59,6 +59,6 @@ class ErrorDialogFragment(builder: Builder): DialogFragment() {
     class Builder {
         internal var onRetryClick: () -> Unit? = { }
 
-        fun addButtonClick( onRetryClick: () -> Unit) = apply { this.onRetryClick = onRetryClick }
+        fun onRetryAgainClick(onRetryClick: () -> Unit) = apply { this.onRetryClick = onRetryClick }
     }
 }

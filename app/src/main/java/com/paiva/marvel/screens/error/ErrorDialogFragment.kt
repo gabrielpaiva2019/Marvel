@@ -11,9 +11,9 @@ import androidx.fragment.app.DialogFragment
 import com.paiva.marvel.R
 import kotlinx.android.synthetic.main.fragment_error.*
 
-class ErrorDialogFragment: DialogFragment() {
+class ErrorDialogFragment(builder: Builder): DialogFragment() {
 
-    lateinit var onTryAgainClick: () -> Unit
+    var onTryAgainClick: () -> Unit = builder.onRetryClick as () -> Unit
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,5 +54,11 @@ class ErrorDialogFragment: DialogFragment() {
     private fun changeVisibilityActivity(visibility: Int) {
         activity?.window?.decorView?.findViewById<View>(android.R.id.content)?.visibility =
             visibility
+    }
+
+    class Builder {
+        internal var onRetryClick: () -> Unit? = { }
+
+        fun addButtonClick( onRetryClick: () -> Unit) = apply { this.onRetryClick = onRetryClick }
     }
 }

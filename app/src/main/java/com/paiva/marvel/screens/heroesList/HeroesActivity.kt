@@ -17,8 +17,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.lang.Math.abs
 
 class HeroesActivity : AppCompatActivity() {
-
     private val viewModel by viewModel<HeroesViewModel>()
+
     private lateinit var loadingDialogFragment: LoadingDialogFragment
     private lateinit var errorDialogFragment: ErrorDialogFragment
 
@@ -36,12 +36,13 @@ class HeroesActivity : AppCompatActivity() {
     }
 
     private fun initializeVars() {
-        errorDialogFragment = ErrorDialogFragment()
+      val errorDialogBuilder = ErrorDialogFragment
+            .Builder()
+            .addButtonClick { callMarvelApi() }
+
+        errorDialogFragment = ErrorDialogFragment(errorDialogBuilder)
         loadingDialogFragment = LoadingDialogFragment()
 
-        errorDialogFragment.onTryAgainClick = {
-            callMarvelApi()
-        }
     }
 
     private fun callMarvelApi() {
@@ -52,8 +53,7 @@ class HeroesActivity : AppCompatActivity() {
     private fun setupObservers() {
         viewModel.error.observe(this, { isError ->
             if(isError){
-                errorDialogFragment.show(supportFragmentManager, ERROR_FRAGMENT_TAG)
-                loadingDialogFragment.dismiss()
+                configErrorScreen()
             }
         })
 
@@ -62,6 +62,11 @@ class HeroesActivity : AppCompatActivity() {
             configRecyclerView(heroes)
             configViewPager(heroes)
         })
+    }
+
+    private fun configErrorScreen() {
+        errorDialogFragment.show(supportFragmentManager, ERROR_FRAGMENT_TAG)
+        loadingDialogFragment.dismiss()
     }
 
     private fun configRecyclerView(heroes: Heroes) {

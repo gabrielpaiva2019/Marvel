@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.paiva.marvel.R
@@ -25,6 +26,8 @@ class HeroesAdapter(var heroesList: List<Result>): RecyclerView.Adapter<HeroesAd
         Picasso.get()
             .load(thumbnailPath)
             .into(holder.imageHero)
+
+        holder.textViewHeroName.text = hero.name
     }
 
     override fun getItemCount(): Int {
@@ -32,6 +35,7 @@ class HeroesAdapter(var heroesList: List<Result>): RecyclerView.Adapter<HeroesAd
     }
 
     class HeroesViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        val imageHero = view.findViewById<ImageView>(R.id.imageViewHero)
+        val imageHero: ImageView = view.findViewById(R.id.imageViewHero)
+        val textViewHeroName: TextView = view.findViewById(R.id.textViewHeroeName)
     }
 }

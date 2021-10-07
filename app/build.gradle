@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
 }
 
 android {
@@ -22,7 +23,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-            buildConfigField "String", "GATEWAY_BASE_URL", "\"https://gateway.marvel.com/v1/public/\""
+            buildConfigField "String", "GATEWAY_BASE_URL", "\"https://gateway.marvel.com/\""
             buildConfigField "String", "PUBLIC_API_KEY", "\"7b10a2541d178bd31ddafd00c089aeec\""
             buildConfigField "String", "PRIVATE_API_KEY", "\"1ad39cd5db69085785d857d4c49f4ad6c8de1928\""
         }
@@ -40,6 +41,12 @@ android {
 
 dependencies {
 
+    // Koin
+    implementation "org.koin:koin-android:2.0.1"
+    implementation 'org.koin:koin-androidx-viewmodel:2.0.1'
+    implementation 'org.koin:koin-androidx-scope:2.0.1'
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
     implementation "com.squareup.retrofit2:retrofit:2.8.0"
@@ -50,6 +57,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta8'
+    implementation 'com.airbnb.android:lottie:4.2.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

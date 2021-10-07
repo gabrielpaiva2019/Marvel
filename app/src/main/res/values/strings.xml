@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Marvel</string>
+    <string name="hero_details_bottomsheet_dont_have_description">"Herói não possui descrição"</string>
 </resources>

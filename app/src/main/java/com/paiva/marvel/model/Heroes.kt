@@ -15,7 +15,7 @@ data class Data(
     val limit: Long,
     val total: Long,
     val count: Long,
-    val results: List<Result>
+    val results: ArrayList<Result>
 )
 
 data class Result(
@@ -65,14 +65,9 @@ enum class ItemType(val value: String) {
 
 data class Thumbnail(
     val path: String,
-    val extension: Extension
+    val extension: String
 )
 
-enum class Extension(val value: String) {
-    GIF("gif"),
-    Jpg("jpg");
-
-}
 
 data class URL(
     val type: URLType,

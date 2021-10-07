@@ -9,8 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.paiva.marvel.R
+import kotlinx.android.synthetic.main.fragment_error.*
 
 class ErrorDialogFragment: DialogFragment() {
+
+    lateinit var onTryAgainClick: () -> Unit
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -18,6 +21,18 @@ class ErrorDialogFragment: DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_error, null)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setUpListeners()
+    }
+
+    private fun setUpListeners() {
+        buttonTryAgain.setOnClickListener {
+            this.dismiss()
+            onTryAgainClick()
+        }
     }
 
     override fun onStart() {

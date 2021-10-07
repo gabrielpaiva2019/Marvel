@@ -32,22 +32,28 @@ class HeroesActivity : AppCompatActivity() {
     private fun configScreen() {
         initializeVars()
         setupObservers()
-        viewModel.fetchHeroes()
+        callMarvelApi()
     }
 
     private fun initializeVars() {
         errorDialogFragment = ErrorDialogFragment()
         loadingDialogFragment = LoadingDialogFragment()
+
+        errorDialogFragment.onTryAgainClick = {
+            callMarvelApi()
+        }
+    }
+
+    private fun callMarvelApi() {
         loadingDialogFragment.show(supportFragmentManager, "LOADING")
-        errorDialogFragment.show(supportFragmentManager, "ERROR")
+        viewModel.fetchHeroes()
     }
 
     private fun setupObservers() {
-        viewModel.error.observe(this, {
-            if(it == true){
+        viewModel.error.observe(this, { isError ->
+            if(isError){
+                errorDialogFragment.show(supportFragmentManager, "ERROR")
                 loadingDialogFragment.dismiss()
-            }else {
-
             }
         })
 
@@ -55,7 +61,6 @@ class HeroesActivity : AppCompatActivity() {
             loadingDialogFragment.dismiss()
             configRecyclerView(heroes)
             configViewPager(heroes)
-
         })
     }
 

@@ -45,14 +45,14 @@ class HeroesActivity : AppCompatActivity() {
     }
 
     private fun callMarvelApi() {
-        loadingDialogFragment.show(supportFragmentManager, "LOADING")
+        loadingDialogFragment.show(supportFragmentManager, LOADING_FRAGMENT_TAG)
         viewModel.fetchHeroes()
     }
 
     private fun setupObservers() {
         viewModel.error.observe(this, { isError ->
             if(isError){
-                errorDialogFragment.show(supportFragmentManager, "ERROR")
+                errorDialogFragment.show(supportFragmentManager, ERROR_FRAGMENT_TAG)
                 loadingDialogFragment.dismiss()
             }
         })
@@ -65,10 +65,10 @@ class HeroesActivity : AppCompatActivity() {
     }
 
     private fun configRecyclerView(heroes: Heroes) {
-        var gridLayoutManager = GridLayoutManager(this, 3)
+        var gridLayoutManager = GridLayoutManager(this, GRID_SPAN_COUNT)
         val adapter = HeroesAdapter(heroes.data.results)
         recyclerListHeroes.layoutManager = gridLayoutManager
-        recyclerListHeroes.addItemDecoration(HeroesRecyclerViewDecoration(3, 50, true))
+        recyclerListHeroes.addItemDecoration(HeroesRecyclerViewDecoration(GRID_SPAN_COUNT, GRID_SPACING, true))
         recyclerListHeroes.adapter = adapter
     }
 
@@ -97,7 +97,11 @@ class HeroesActivity : AppCompatActivity() {
     }
 
     companion object {
+        const val LOADING_FRAGMENT_TAG = "LOADING"
+        const val ERROR_FRAGMENT_TAG = "ERROR"
         const val FIRST_POSITION_VIEW_PAGER = 1
         const val OFFSCREEN_PAGE_LIMIT = 2
+        const val GRID_SPAN_COUNT = 3
+        const val GRID_SPACING = 50
     }
 }

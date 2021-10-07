@@ -57,9 +57,12 @@ class HeroesActivity : AppCompatActivity() {
             }
         })
 
-        viewModel.heroes.observe(this@HeroesActivity, { heroes ->
+        viewModel.heroesWithoutCarroselItens.observe(this, { heroes ->
             loadingDialogFragment.dismiss()
             configRecyclerView(heroes)
+        })
+
+        viewModel.heroesCarroselItens.observe(this, { heroes ->
             configViewPager(heroes)
         })
     }
@@ -69,9 +72,9 @@ class HeroesActivity : AppCompatActivity() {
         loadingDialogFragment.dismiss()
     }
 
-    private fun configRecyclerView(heroes: Heroes) {
+    private fun configRecyclerView(heroes: List<Result>) {
         var gridLayoutManager = GridLayoutManager(this, GRID_SPAN_COUNT)
-        val adapter = HeroesAdapter(heroes.data.results) { hero ->
+        val adapter = HeroesAdapter(heroes) { hero ->
             hero?.let { showHeroDetails(it) }
         }
         recyclerListHeroes.layoutManager = gridLayoutManager
@@ -84,8 +87,8 @@ class HeroesActivity : AppCompatActivity() {
             .show(supportFragmentManager, "")
     }
 
-    private fun configViewPager(heroes: Heroes) {
-        val viewPagerAdapter = HeroesViewPagerAdapter(heroes.data.results)
+    private fun configViewPager(heroes: List<Result>) {
+        val viewPagerAdapter = HeroesViewPagerAdapter(heroes)
 
         val nextItemVisiblePx = resources.getDimension(R.dimen.viewpager_next_item_visible)
         val currentItemHorizontalMarginPx =

@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.paiva.marvel.R
@@ -42,7 +41,6 @@ class HeroDetailsBottomSheet(var hero: Result): BottomSheetDialogFragment() {
 
     private fun getHeroDescription(hero: Result): String {
         val isBlankDescription = hero.description == ""
-
         return if (isBlankDescription) {
             getString(R.string.hero_details_bottomsheet_dont_have_description)
         } else {

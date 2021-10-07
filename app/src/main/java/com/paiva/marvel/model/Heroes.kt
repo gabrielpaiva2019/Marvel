@@ -15,7 +15,7 @@ data class Data(
     val limit: Long,
     val total: Long,
     val count: Long,
-    val results: List<Result>
+    val results: ArrayList<Result>
 )
 
 data class Result(

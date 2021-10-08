@@ -2,4 +2,25 @@
 <resources>
     <dimen name="viewpager_next_item_visible">26dp</dimen>
     <dimen name="viewpager_current_item_horizontal_margin">42dp</dimen>
+    <dimen name="default_0dp">0dp</dimen>
+    <dimen name="default_30dp">30dp</dimen>
+    <dimen name="default_25dp">25dp</dimen>
+    <dimen name="default_50dp">50dp</dimen>
+    <dimen name="default_5dp">5dp</dimen>
+    <dimen name="default_20dp">20dp</dimen>
+    <dimen name="default_40dp">40dp</dimen>
+    <dimen name="default_60dp">60dp</dimen>
+    <dimen name="default_10dp">10dp</dimen>
+    <dimen name="default_300dp">300dp</dimen>
+    <dimen name="default_70dp">70dp</dimen>
+    <dimen name="default_230dp">230dp</dimen>
+    <dimen name="default_200dp">200dp</dimen>
+    <dimen name="default_160dp">160dp</dimen>
+
+    <dimen name="default_text_34sp">34sp</dimen>
+    <dimen name="default_text_16sp">16sp</dimen>
+    <dimen name="default_text_12sp">12sp</dimen>
+    <dimen name="default_text_18sp">18sp</dimen>
+    <dimen name="default_text_24sp">24sp</dimen>
+    <dimen name="default_text_20sp">20sp</dimen>
 </resources>

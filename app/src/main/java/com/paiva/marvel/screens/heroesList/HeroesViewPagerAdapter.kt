@@ -31,7 +31,7 @@ class HeroesViewPagerAdapter(var heroesList: List<Result>):
     }
 
     override fun getItemCount(): Int {
-       return 5
+       return heroesList.size
     }
 
     class HeroesViewPagerViewHolder(view: View): RecyclerView.ViewHolder(view){

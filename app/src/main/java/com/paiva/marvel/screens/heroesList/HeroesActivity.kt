@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.paiva.marvel.R
-import com.paiva.marvel.model.Heroes
 import com.paiva.marvel.model.Result
 import com.paiva.marvel.screens.error.ErrorDialogFragment
 import com.paiva.marvel.screens.heroDetails.HeroDetailsBottomSheet

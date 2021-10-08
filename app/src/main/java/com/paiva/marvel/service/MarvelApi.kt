@@ -1,4 +1,4 @@
-package com.paiva.marvel.api
+package com.paiva.marvel.service
 
 import com.paiva.marvel.model.Heroes
 import retrofit2.Response

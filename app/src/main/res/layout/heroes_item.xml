@@ -7,11 +7,11 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        app:cardCornerRadius="20dp"
+        android:layout_height="@dimen/default_160dp"
+        android:layout_marginStart="@dimen/default_5dp"
+        android:layout_marginTop="@dimen/default_5dp"
+        android:layout_marginEnd="@dimen/default_5dp"
+        app:cardCornerRadius="@dimen/default_20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
                 android:id="@+id/imageViewHero"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="@dimen/default_5dp"
                 android:scaleType="fitXY"
                 app:layout_constraintBottom_toTopOf="@+id/textViewHeroeName"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -35,10 +35,10 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_width="@dimen/default_20dp"
+                android:layout_height="@dimen/default_20dp"
+                android:layout_marginTop="@dimen/default_10dp"
+                android:layout_marginEnd="@dimen/default_10dp"
                 app:layout_constraintEnd_toEndOf="@+id/imageViewHero"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@android:drawable/ic_dialog_info" />
@@ -47,18 +47,16 @@
                 android:id="@+id/textViewHeroeName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="@dimen/default_10dp"
                 android:gravity="center"
-                android:text="TextView"
                 android:textColor="@color/black"
-                android:textSize="12sp"
+                android:textSize="@dimen/default_text_12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/imageViewHero"
                 app:layout_constraintStart_toStartOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     </androidx.cardview.widget.CardView>
 

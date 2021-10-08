@@ -8,9 +8,9 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animationView"
-        android:layout_width="300dp"
-        android:layout_height="230dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="@dimen/default_300dp"
+        android:layout_height="@dimen/default_230dp"
+        android:layout_marginTop="@dimen/default_50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -22,29 +22,29 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:text="Aguarde..."
+        android:layout_marginTop="@dimen/default_70dp"
+        android:text="@string/wait"
         android:textColor="@color/white"
-        android:textSize="34sp"
+        android:textSize="@dimen/default_text_34sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/animationView"
         app:layout_constraintTop_toBottomOf="@+id/animationView" />
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/default_0dp"
         android:layout_height="wrap_content"
         android:text="carregando os melhores heróis do mundo !"
         android:textColor="@color/white"
-        android:textSize="24sp"
+        android:textSize="@dimen/default_text_24sp"
         app:layout_constraintEnd_toEndOf="@+id/animationView"
         app:layout_constraintStart_toStartOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animationView2"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
+        android:layout_width="@dimen/default_300dp"
+        android:layout_height="@dimen/default_200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

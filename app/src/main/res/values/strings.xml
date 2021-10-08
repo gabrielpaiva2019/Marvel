@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Marvel</string>
     <string name="hero_details_bottomsheet_dont_have_description">"Herói não possui descrição"</string>
+    <string name="hero_name">Nome do Heroi</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut urna ligula. Maecenas feugiat, enim quis ornare cursus, dui enim vestibulum nisi, ac malesuada ligula dui sed felis. In consectetur leo sed orci molestie feugiat.</string>
+    <string name="bottomsheet_hero_details_title">Comics</string>
+    <string name="error_description">ocorreu um erro em nossos servidores</string>
+    <string name="error_title">Opss...</string>
+    <string name="try_again">tentar novamente</string>
+    <string name="wait">Aguarde...</string>
 </resources>

@@ -1,7 +1,7 @@
 package com.paiva.marvel.infra.koin
 
 import com.paiva.marvel.BuildConfig
-import com.paiva.marvel.api.MarvelApi
+import com.paiva.marvel.service.MarvelApi
 import com.paiva.marvel.screens.heroesList.HeroesViewModel
 import com.paiva.marvel.service.MarvelService
 import okhttp3.OkHttpClient

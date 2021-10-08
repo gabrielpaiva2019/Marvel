@@ -40,7 +40,7 @@ class HeroDetailsBottomSheet(var hero: Result): BottomSheetDialogFragment() {
     }
 
     private fun getHeroDescription(hero: Result): String {
-        val isBlankDescription = hero.description == ""
+        val isBlankDescription = hero.description == EMPTY_STRING
         return if (isBlankDescription) {
             getString(R.string.hero_details_bottomsheet_dont_have_description)
         } else {
@@ -55,5 +55,9 @@ class HeroDetailsBottomSheet(var hero: Result): BottomSheetDialogFragment() {
 
     override fun getTheme(): Int {
         return R.style.CustomBottomSheetDialog
+    }
+
+    companion object {
+        const val EMPTY_STRING = ""
     }
 }

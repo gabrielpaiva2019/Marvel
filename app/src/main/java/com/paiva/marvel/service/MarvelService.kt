@@ -1,7 +1,6 @@
 package com.paiva.marvel.service
 
 import com.paiva.marvel.BuildConfig
-import com.paiva.marvel.api.MarvelApi
 import com.paiva.marvel.model.Heroes
 import retrofit2.Response
 import java.math.BigInteger

@@ -9,6 +9,7 @@ import com.paiva.marvel.service.MarvelService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.IOException
 
 class HeroesViewModel(private var service: MarvelService): ViewModel() {
 
@@ -26,33 +27,54 @@ class HeroesViewModel(private var service: MarvelService): ViewModel() {
     val error: LiveData<Boolean>
         get() = _error
 
-    lateinit var heroesFilteredList: ArrayList<Result>
-    lateinit var carrosselList: ArrayList<Result>
+    private lateinit var heroesFilteredList: ArrayList<Result>
+    private lateinit var carrosselList: ArrayList<Result>
 
     fun fetchHeroes() {
-        viewModelScope.launch(Dispatchers.IO) {
-            val response = service.getHeroes()
+        viewModelScope.launch {
+            if (isInternetAvailable()){
+                val response = service.getHeroes()
+                if (response != null) {
+                    withContext(Dispatchers.Main) {
+                        val hero = response.data?.results
 
-            if (response.isSuccessful) {
-                withContext(Dispatchers.Main) {
-                    val hero = response.body()?.data?.results
+                        heroesFilteredList = ArrayList(hero?.subList(CARROSSEL_LIMIT_INDEX, hero.size))
+                        carrosselList = ArrayList(hero?.subList(FIRST_ITEM_ARRAY, CARROSSEL_LIMIT_INDEX))
 
-                    heroesFilteredList = ArrayList(hero?.subList(CARROSSEL_LIMIT_INDEX, hero.size))
-                    carrosselList = ArrayList(hero?.subList(FIRST_ITEM_ARRAY, CARROSSEL_LIMIT_INDEX))
-
-                    _heroesCarroselItens.value = carrosselList
-                    _heroesWithoutCarroselItens.value = heroesFilteredList
+                        _heroesCarroselItens.value = carrosselList
+                        _heroesWithoutCarroselItens.value = heroesFilteredList
+                    }
+                } else {
+                    withContext(Dispatchers.Main) {
+                        _error.value = true
+                    }
                 }
             } else {
                 withContext(Dispatchers.Main) {
-                   _error.value = true
+                    _error.value = true
                 }
             }
         }
     }
 
+     fun isInternetAvailable(): Boolean {
+        val runtime = Runtime.getRuntime()
+        try {
+            val ipProcess = runtime.exec(IP_PROCESS_COMMAND)
+            val exitValue = ipProcess.waitFor()
+            return exitValue == 0
+        } catch (e: IOException) {
+            e.printStackTrace()
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
+        }
+
+        return false
+    }
+
     companion object {
         const val FIRST_ITEM_ARRAY = 0
         const val CARROSSEL_LIMIT_INDEX = 5
+        const val IP_PROCESS_COMMAND = "/system/bin/ping -c 1 8.8.8.8"
     }
 }

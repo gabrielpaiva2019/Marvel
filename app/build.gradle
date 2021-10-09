@@ -40,6 +40,10 @@ android {
         jvmTarget = '1.8'
     }
 
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
 }
 
 dependencies {
@@ -66,9 +70,11 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$versions.cnstraintLayout"
 
     // Tests
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    testImplementation "junit:junit:$versions.junit"
+    testImplementation "io.mockk:mockk:$versions.mockk"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.kotlinxCoroutines"
+    testImplementation "androidx.arch.core:core-testing:$versions.archCore"
+
 
     // Others
     implementation "androidx.core:core-ktx:$versions.kotlin"

@@ -9,6 +9,8 @@ import com.paiva.marvel.service.MarvelService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.lang.Exception
+import java.net.InetAddress
 
 class HeroesViewModel(private var service: MarvelService): ViewModel() {
 
@@ -31,28 +33,44 @@ class HeroesViewModel(private var service: MarvelService): ViewModel() {
 
     fun fetchHeroes() {
         viewModelScope.launch(Dispatchers.IO) {
-            val response = service.getHeroes()
+            if (isInternetAvailable()){
+                val response = service.getHeroes()
+                if (response != null) {
+                    withContext(Dispatchers.Main) {
+                        val hero = response.data?.results
 
-            if (response.isSuccessful) {
-                withContext(Dispatchers.Main) {
-                    val hero = response.body()?.data?.results
+                        heroesFilteredList = ArrayList(hero?.subList(CARROSSEL_LIMIT_INDEX, hero.size))
+                        carrosselList = ArrayList(hero?.subList(FIRST_ITEM_ARRAY, CARROSSEL_LIMIT_INDEX))
 
-                    heroesFilteredList = ArrayList(hero?.subList(CARROSSEL_LIMIT_INDEX, hero.size))
-                    carrosselList = ArrayList(hero?.subList(FIRST_ITEM_ARRAY, CARROSSEL_LIMIT_INDEX))
-
-                    _heroesCarroselItens.value = carrosselList
-                    _heroesWithoutCarroselItens.value = heroesFilteredList
+                        _heroesCarroselItens.value = carrosselList
+                        _heroesWithoutCarroselItens.value = heroesFilteredList
+                    }
+                } else {
+                    withContext(Dispatchers.Main) {
+                        _error.value = true
+                    }
                 }
             } else {
                 withContext(Dispatchers.Main) {
-                   _error.value = true
+                    _error.value = true
                 }
             }
+        }
+    }
+
+    private fun isInternetAvailable(): Boolean {
+        return try {
+            val inetAddress = InetAddress.getByName(GOOGLE_HOST)
+            !inetAddress.equals(EMPTY_STRING)
+        } catch (e: Exception) {
+            false
         }
     }
 
     companion object {
         const val FIRST_ITEM_ARRAY = 0
         const val CARROSSEL_LIMIT_INDEX = 5
+        const val GOOGLE_HOST = "google.com"
+        const val EMPTY_STRING = ""
     }
 }

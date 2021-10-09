@@ -9,7 +9,7 @@ import java.sql.Timestamp
 
 class MarvelService(private var api: MarvelApi) {
 
-    suspend fun getHeroes(): Response<Heroes> = api.getHeroes(getTimeStamp(),
+    suspend fun getHeroes(): Heroes = api.getHeroes(getTimeStamp(),
         BuildConfig.PUBLIC_API_KEY,
         getHashApiKey())
 

@@ -40,6 +40,10 @@ android {
         jvmTarget = '1.8'
     }
 
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
 }
 
 dependencies {
@@ -68,6 +72,9 @@ dependencies {
     // Tests
     testImplementation "junit:junit:$versions.junit"
     testImplementation "io.mockk:mockk:$versions.mockk"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.kotlinxCoroutines"
+    testImplementation "androidx.arch.core:core-testing:$versions.archCore"
+
 
     // Others
     implementation "androidx.core:core-ktx:$versions.kotlin"

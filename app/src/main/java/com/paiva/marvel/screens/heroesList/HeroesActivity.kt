@@ -83,7 +83,7 @@ class HeroesActivity : AppCompatActivity() {
 
     private fun showHeroDetails(hero: Result) {
         HeroDetailsBottomSheet(hero)
-            .show(supportFragmentManager, "")
+            .show(supportFragmentManager, DETAIL_BOTTOM_SHEET)
     }
 
     private fun configViewPager(heroes: List<Result>) {
@@ -113,6 +113,7 @@ class HeroesActivity : AppCompatActivity() {
     companion object {
         const val LOADING_FRAGMENT_TAG = "LOADING"
         const val ERROR_FRAGMENT_TAG = "ERROR"
+        const val DETAIL_BOTTOM_SHEET = "DETAIL_BOTTOM_SHEET"
         const val FIRST_POSITION_VIEW_PAGER = 1
         const val OFFSCREEN_PAGE_LIMIT = 2
         const val GRID_SPAN_COUNT = 3
